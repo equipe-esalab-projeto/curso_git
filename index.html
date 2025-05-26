@@ -52,10 +52,10 @@
     <div class="command-block">git config --global --list</div>
     <div class="explanation">Exibe todas as configurações globais do Git configuradas no sistema.</div>
     
-    <div class="command-block">git config --global user.name "keren-hapuqueK"</div>
+    <div class="command-block">git config --global user.name "exemplo-usuario"</div>
     <div class="explanation">Define o nome de usuário global para os commits do Git.</div>
     
-    <div class="command-block">git config --global user.email "hapuque.o@estudante.ifmt.edu.br"</div>
+    <div class="command-block">git config --global user.email "usuario@exemplo.com"</div>
     <div class="explanation">Define o email global para os commits do Git.</div>
     
     <div class="command-block">git init</div>
@@ -96,11 +96,11 @@
     
     <h2>Fluxo de Trabalho Básico</h2>
     
-    <div class="terminal">keren_hapuque@KFOFIS:~/projeto_aulagit$ git config --global --list 
-user.name=Keren-HapuqueK
-user.email=hapuque.o@estudante.ifmt.edu.br
+    <div class="terminal">usuario@EXEMPLO:~/projeto_git$ git config --global --list 
+user.name=exemplo-usuario
+user.email=usuario@exemplo.com
 
-keren_hapuque@KFOFIS:~/projeto_aulagit$ git init
+usuario@EXEMPLO:~/projeto_git$ git init
 hint: Using 'master' as the name for the initial branch. This default branch name
 hint: is subject to change. To configure the initial branch name to use in all
 hint: of your new repositories, which will suppress this warning, call:
@@ -111,12 +111,12 @@ hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
 hint: 'development'. The just-created branch can be renamed via this command:
 hint:
 hint:   git branch -m <name>
-Initialized empty Git repository in /home/keren_hapuque/projeto_aulagit/.git/</div>
+Initialized empty Git repository in /home/usuario/projeto_git/.git/</div>
     
     <div class="command-block">git status</div>
     <div class="explanation">Mostra o estado atual do repositório Git, incluindo arquivos modificados, não rastreados ou preparados para commit.</div>
     
-    <div class="terminal">keren_hapuque@KFOFIS:~/projeto_aulagit$ git status
+    <div class="terminal">usuario@EXEMPLO:~/projeto_git$ git status
 On branch master
 
 No commits yet
@@ -130,9 +130,9 @@ nothing added to commit but untracked files present (use "git add" to track)</di
     <div class="command-block">git add .</div>
     <div class="explanation">Adiciona todos os arquivos modificados à área de preparação (staging area) para serem incluídos no próximo commit.</div>
     
-    <div class="terminal">keren_hapuque@KFOFIS:~/projeto_aulagit$ git add .
+    <div class="terminal">usuario@EXEMPLO:~/projeto_git$ git add .
 
-keren_hapuque@KFOFIS:~/projeto_aulagit$ git status
+usuario@EXEMPLO:~/projeto_git$ git status
 On branch master
 
 No commits yet
@@ -144,28 +144,28 @@ Changes to be committed:
     <div class="command-block">git commit -m "test"</div>
     <div class="explanation">Cria um novo commit com todos os arquivos da área de preparação, usando "test" como mensagem de commit.</div>
     
-    <div class="terminal">keren_hapuque@KFOFIS:~/projeto_aulagit$ git commit -m "test"
+    <div class="terminal">usuario@EXEMPLO:~/projeto_git$ git commit -m "test"
 [master (root-commit) adc3d1d] test
  1 file changed, 3 insertions(+)
  create mode 100644 test.html
 
-keren_hapuque@KFOFIS:~/projeto_aulagit$ git status
+usuario@EXEMPLO:~/projeto_git$ git status
 On branch master
 nothing to commit, working tree clean
 
-keren_hapuque@KFOFIS:~/projeto_aulagit$ git status
+usuario@EXEMPLO:~/projeto_git$ git status
 On branch master
 nothing to commit, working tree clean</div>
     
     <h2>Conectando ao Repositório Remoto</h2>
     
-    <div class="command-block">git add origin https://github.com/Keren-HapuqueK/projeto_aulagit.git</div>
+    <div class="command-block">git add origin https://github.com/exemplo-usuario/projeto_git.git</div>
     <div class="explanation">Comando incorreto que resultou em erro. Para adicionar um repositório remoto, deve-se usar "git remote add" e não "git add".</div>
     
-    <div class="terminal">keren_hapuque@KFOFIS:~/projeto_aulagit$ git add origin https://github.com/Keren-HapuqueK/projeto_aulagit.git
+    <div class="terminal">usuario@EXEMPLO:~/projeto_git$ git add origin https://github.com/exemplo-usuario/projeto_git.git
 fatal: pathspec 'origin' did not match any files</div>
     
-    <div class="command-block">git remote add origin https://github.com/Keren-HapuqueK/projeto_aulagit.git</div>
+    <div class="command-block">git remote add origin https://github.com/exemplo-usuario/projeto_git.git</div>
     <div class="explanation">Adiciona um repositório remoto chamado "origin" com o URL especificado.</div>
     
     <div class="command-block">git branch -M main</div>
@@ -173,6 +173,113 @@ fatal: pathspec 'origin' did not match any files</div>
         <p class="note">git branch -M main: significa que mudou o nome da branch</p>
         Renomeia a branch atual (provavelmente "master") para "main", que é o novo padrão recomendado.
     </div>
+    
+    <h2>Trabalhando com Branches</h2>
+    
+    <div class="command-block">git branch</div>
+    <div class="explanation">Lista todas as branches locais do repositório. A branch atual será destacada com um asterisco.</div>
+    
+    <div class="terminal">usuario@EXEMPLO:~/projeto_git$ git branch
+* main</div>
+    
+    <div class="command-block">git branch nova-feature</div>
+    <div class="explanation">Cria uma nova branch chamada "nova-feature" a partir da branch atual, mas não muda para ela.</div>
+    
+    <div class="terminal">usuario@EXEMPLO:~/projeto_git$ git branch nova-feature
+usuario@EXEMPLO:~/projeto_git$ git branch
+* main
+  nova-feature</div>
+    
+    <div class="command-block">git checkout nova-feature</div>
+    <div class="explanation">Muda da branch atual para a branch "nova-feature".</div>
+    
+    <div class="terminal">usuario@EXEMPLO:~/projeto_git$ git checkout nova-feature
+Switched to branch 'nova-feature'
+usuario@EXEMPLO:~/projeto_git$ git branch
+  main
+* nova-feature</div>
+    
+    <div class="command-block">git checkout -b outra-feature</div>
+    <div class="explanation">Cria uma nova branch chamada "outra-feature" e imediatamente muda para ela. Combina os comandos "git branch" e "git checkout" em um único comando.</div>
+    
+    <div class="terminal">usuario@EXEMPLO:~/projeto_git$ git checkout -b outra-feature
+Switched to a new branch 'outra-feature'
+usuario@EXEMPLO:~/projeto_git$ git branch
+  main
+  nova-feature
+* outra-feature</div>
+    
+    <h2>Mesclando Branches (Merge)</h2>
+    
+    <div class="command-block">git checkout main</div>
+    <div class="explanation">Retorna para a branch principal (main) antes de realizar o merge.</div>
+    
+    <div class="terminal">usuario@EXEMPLO:~/projeto_git$ git checkout main
+Switched to branch 'main'</div>
+    
+    <div class="command-block">git merge nova-feature</div>
+    <div class="explanation">Mescla as alterações da branch "nova-feature" na branch atual (main). Isto combina o histórico das duas branches.</div>
+    
+    <div class="terminal">usuario@EXEMPLO:~/projeto_git$ git merge nova-feature
+Updating adc3d1d..2f4e8b9
+Fast-forward
+ feature.html | 5 +++++
+ 1 file changed, 5 insertions(+)</div>
+    
+    <div class="command-block">git branch -d nova-feature</div>
+    <div class="explanation">Deleta a branch "nova-feature" após ter mesclado suas alterações com sucesso. Use -D (maiúsculo) se quiser forçar a exclusão mesmo sem mesclar.</div>
+    
+    <div class="terminal">usuario@EXEMPLO:~/projeto_git$ git branch -d nova-feature
+Deleted branch nova-feature (was 2f4e8b9).</div>
+    
+    <h2>Resolvendo Conflitos de Merge</h2>
+    
+    <div class="explanation" style="background-color: #fff0f0; border-left: 4px solid #e74c3c; padding: 15px;">
+        <p>Conflitos ocorrem quando o mesmo trecho de código foi modificado de maneiras diferentes em duas branches. Quando isso acontece, o Git não consegue decidir automaticamente qual versão manter.</p>
+        
+        <h3>Exemplo de conflito:</h3>
+        <div class="terminal">keren_hapuque@KFOFIS:~/projeto_aulagit$ git merge outra-feature
+Auto-merging index.html
+CONFLICT (content): Merge conflict in index.html
+Automatic merge failed; fix conflicts and then commit the result.</div>
+        
+        <h3>Passos para resolver conflitos:</h3>
+        <ol>
+            <li>Abra os arquivos com conflito em um editor</li>
+            <li>Procure por marcações como <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code> e <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code></li>
+            <li>Edite o arquivo para manter o código desejado</li>
+            <li>Remova as marcações de conflito</li>
+            <li>Adicione o arquivo resolvido com <code>git add</code></li>
+            <li>Complete o merge com <code>git commit</code></li>
+        </ol>
+    </div>
+    
+    <h2>Outros Comandos Úteis</h2>
+    
+    <div class="command-block">git log</div>
+    <div class="explanation">Mostra o histórico de commits, incluindo autor, data e mensagem de commit.</div>
+    
+    <div class="command-block">git log --graph --oneline --all</div>
+    <div class="explanation">Mostra uma visualização gráfica do histórico de branches e commits de forma condensada.</div>
+    
+    <div class="command-block">git stash</div>
+    <div class="explanation">Guarda temporariamente alterações não commitadas para que você possa mudar de branch sem perder seu trabalho.</div>
+    
+    <div class="command-block">git stash pop</div>
+    <div class="explanation">Recupera as alterações guardadas mais recentes e as aplica ao seu diretório de trabalho.</div>
+
+    <div class="command-block">git reset --hard HEAD</div>
+    <div class="explanation">Desfaz todas as alterações no diretório de trabalho e na área de preparação, retornando ao último commit. Use com cautela, pois perderá todas as alterações não commitadas.</div>
+    
+    <div class="command-block">git remote -v</div>
+    <div class="explanation">Lista todos os repositórios remotos configurados para o repositório local, mostrando seus URLs.</div>
+    
+    <div class="command-block">git push origin main</div>
+    <div class="explanation">Envia os commits da branch atual (main) para o repositório remoto chamado "origin".</div>
+    
+    <div class="command-block">git pull origin main</div>
+    <div class="explanation">Baixa e mescla as alterações do repositório remoto "origin" na branch atual (main).</div>
+
 </body>
 </html>
 
