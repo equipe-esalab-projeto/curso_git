@@ -129,7 +129,6 @@ graph LR
 
 - Use **Pull Requests com revisão de código**.
 - Marque os commits com referências a issues ou tarefas: `feat: adiciona login (#42)`.
-- Configure **CI/CD** para testes automáticos.
 
 ---
 
