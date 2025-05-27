@@ -76,6 +76,62 @@ graph LR
 | `git checkout`              | Alterna entre branches ou restaura arquivos do repositório.              |
 
 ---
+## 🧠 Boas Práticas e Erros Comuns ao Usar Git
+
+### ✅ Boas Práticas
+
+- **Use um `.gitignore` bem configurado** para evitar versionar arquivos desnecessários (como `node_modules`, `.env`, etc).
+- **Crie branches por funcionalidade** (`feature/login`, `fix/bug-header`) em vez de trabalhar direto na `main`.
+- **Escreva mensagens de commit claras e padronizadas**:
+  - Exemplo: `feat: adicionar componente de login`
+  - Siga a convenção de commits: `feat`, `fix`, `refactor`, `docs`, etc.
+- **Faça commits pequenos e com propósito único** para facilitar a revisão.
+- **Sempre atualize sua branch local com `git pull --rebase` antes de iniciar o trabalho.**
+- **Abra Pull Requests (PRs)** para facilitar a revisão e colaboração.
+- **Delete branches antigas** após o merge para manter o repositório limpo.
+- **Nunca envie credenciais ou arquivos sensíveis para o repositório.**
+
+---
+
+### ⚠️ Erros Comuns
+
+- ❌ **Dar push direto na `main` ou `master`**
+  - *Problema:* Pode quebrar a produção.
+  - *Solução:* Use PRs e proteja a branch principal.
+
+- ❌ **Não atualizar sua branch antes de trabalhar**
+  - *Problema:* Gera conflitos desnecessários.
+  - *Solução:* `git pull --rebase origin main`
+
+- ❌ **Resolver conflitos de merge de forma incorreta**
+  - *Problema:* Código pode ficar quebrado.
+  - *Solução:* Revise cuidadosamente os conflitos e teste o código.
+
+- ❌ **Mensagens de commit genéricas como "ajustes" ou "update"**
+  - *Problema:* Histórico pouco informativo.
+  - *Solução:* Use mensagens descritivas com convenções.
+
+- ❌ **Usar `git push -f` em branch compartilhada**
+  - *Problema:* Pode sobrescrever o trabalho de outros.
+  - *Solução:* Use `git push --force-with-lease` com cautela e comunicação.
+
+- ❌ **Trabalhar na mesma branch que outra pessoa**
+  - *Problema:* Mais chances de conflitos.
+  - *Solução:* Cada um deve usar sua própria branch.
+
+- ❌ **Esquecer de dar pull antes do push**
+  - *Erro típico:* `! [rejected] - failed to push some refs`
+  - *Solução:* `git pull --rebase` antes do `push`
+
+---
+
+### 🔧 Dicas Extras
+
+- Use **Pull Requests com revisão de código**.
+- Marque os commits com referências a issues ou tarefas: `feat: adiciona login (#42)`.
+- Configure **CI/CD** para testes automáticos.
+
+---
 
 ## ✅ Pronto para começar!
 
