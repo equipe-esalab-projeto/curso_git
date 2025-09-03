@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comandos Git</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f6f8fa;
+            color: #24292e;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 20px 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            border-bottom: 2px solid #eaecef;
+            padding-bottom: 10px;
+            margin-top: 2rem;
+            color: #0366d6;
+        }
+
+        h1 {
+            color: #24292e;
+            text-align: center;
+        }
+        
+        h2 {
+            border-bottom: 2px solid #eaecef;
+            padding-bottom: 5px;
+        }
+
+        .command-block {
+            margin-bottom: 20px;
+        }
+
+        .command-title {
+            background-color: #e8f0fe;
+            color: #0366d6;
+            padding: 10px 15px;
+            border-radius: 5px 5px 0 0;
+            font-weight: bold;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .command-description {
+            background-color: #f0f3f6;
+            border: 1px solid #e1e4e8;
+            border-top: none;
+            padding: 15px;
+            border-radius: 0 0 5px 5px;
+        }
+
+        pre {
+            background-color: #f6f8fa;
+            border: 1px solid #e1e4e8;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f1f8ff;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        .section-separator {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+            margin: 40px 0;
+        }
+        
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li::before {
+            content: "•";
+            color: #0366d6;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        .warning {
+            color: #d73a49;
+            font-weight: bold;
+        }
+
+        .note {
+            background-color: #fff9c4;
+            border-left: 4px solid #fbc02d;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        .sub-section {
+            margin-top: 25px;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Guia de Comandos Git</h1>
+    <hr class="section-separator">
+    
+    <h2>Pré-requisitos e Configuração</h2>
+    <div class="command-block">
+        <div class="command-title">git clone [URL]</div>
+        <div class="command-description">
+            <p><strong>Comando:</strong> <code>git clone https://github.com/seu_id_de_usuario_github/fiplan</code></p>
+            <p><strong>Resposta Esperada:</strong> Cria uma cópia local do repositório remoto na sua máquina, incluindo todas as branches e histórico de commits.</p>
+        </div>
+    </div>
+    <div class="command-block">
+        <div class="command-title">git config --local user.name "Seu nome"</div>
+        <div class="command-description">
+            <p><strong>Comando:</strong> <code>git config --local user.name "Seu nome para exibição no commit"</code></p>
+            <p><strong>Resposta Esperada:</strong> Define o nome do autor que será utilizado nos commits deste repositório.</p>
+        </div>
+    </div>
+    <div class="command-block">
+        <div class="command-title">git config --local user.email "Seu email"</div>
+        <div class="command-description">
+            <p><strong>Comando:</strong> <code>git config --local user.email "seu_email_cadastrado_no_github"</code></p>
+            <p><strong>Resposta Esperada:</strong> Define o email do autor que será associado aos commits neste repositório.</p>
+        </div>
+    </div>
+    <div class="command-block">
+        <div class="command-title">git config --global alias.lol</div>
+        <div class="command-description">
+            <p><strong>Comando:</strong> <code>git config --global alias.lol "log --oneline --graph"</code></p>
+            <p><strong>Resposta Esperada:</strong> Cria um atalho global (<code>lol</code>) para o comando <code>git log --oneline --graph</code>, facilitando a visualização do histórico de commits de forma concisa.</p>
+        </div>
+    </div>
+    <div class="command-block">
+        <div class="command-title">git config --list --show-origin</div>
+        <div class="command-description">
+            <p><strong>Comando:</strong> <code>git config --list --show-origin</code></p>
+            <p><strong>Resposta Esperada:</strong> Exibe todas as configurações Git aplicadas, mostrando de qual arquivo (global, local, etc.) cada configuração foi lida.</p>
+        </div>
+    </div>
+
+    <hr class="section-separator">
+
+    <h2>Reset</h2>
+    <div class="note">
+        <p>Entenda o ciclo de vida dos arquivos no Git: <strong>WORKING DIRECTORY</strong> (diretório de trabalho) → <strong>STAGE</strong> (área de preparação) → <strong>REPO</strong> (repositório).</p>
+        <p>O comando <code>git reset</code> varia seu comportamento dependendo do modo utilizado (soft, mixed, hard).</p>
+    </div>
+    <div class="command-block">
+        <div class="command-title">git reset --soft</div>
+        <div class="command-description">
+            <p><strong>Comando:</strong> <code>git reset --soft HEAD~1</code></p>
+            <p><strong>Descrição:</strong> Altera a branch para o commit especificado (neste caso, o commit anterior a <code>HEAD</code>), mas mantém as alterações no <strong>STAGE</strong> e no <strong>WORKING DIRECTORY</strong>.</p>
+        </div>
+    </div>
+    <div class="command-block">
+        <div class="command-title">git reset --mixed (padrão)</div>
+        <div class="command-description">
+            <p><strong>Comando:</strong> <code>git reset --mixed HEAD~1</code></p>
+            <p><strong>Descrição:</strong> Altera a branch para o commit especificado, move as alterações para o <strong>WORKING DIRECTORY</strong> e limpa a <strong>STAGE</strong>. É o comportamento padrão do <code>git reset</code>.</p>
+        </div>
+    </div>
+    <div class="command-block">
+        <div class="command-title">git reset --hard</div>
+        <div class="command-description">
+            <p><span class="warning"><strong>Comando:</strong></span> <code>git reset --hard HEAD~1</code></p>
+            <p><strong>Descrição:</strong> <span class="warning">Altera a branch para o commit especificado e descarta todas as alterações no <strong>WORKING DIRECTORY</strong> e na <strong>STAGE</strong>. Esta é uma ação destrutiva!</span></p>
+        </div>
+    </div>
+
+    <hr class="section-separator">
+
+    <h2>Outros Comandos Úteis</h2>
+
+    <div class="sub-section">
+        <h3>Revert</h3>
+        <p>O <code>git revert</code> é usado para desfazer um commit específico, criando um <strong>novo commit</strong> que reverte as alterações do commit original. É uma ação não destrutiva e segura para branches compartilhadas.</p>
+        <div class="command-block">
+            <div class="command-title">git revert [commit]</div>
+            <div class="command-description">
+                <p><strong>Comando:</strong> <code>git revert commit_que_esta_errado</code></p>
+                <p><strong>Resposta Esperada:</strong> Cria um novo commit que desfaz as alterações do commit problemático. Você será solicitado a editar a mensagem do novo commit.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="sub-section">
+        <h3>Cherry Pick</h3>
+        <p>O <code>git cherry-pick</code> copia um ou mais commits de uma branch para outra, criando novos commits com as mesmas alterações.</p>
+        <div class="command-block">
+            <div class="command-title">git cherry-pick [commit]</div>
+            <div class="command-description">
+                <p><strong>Comando:</strong> <code>git cherry-pick commit_hash</code></p>
+                <p><strong>Resposta Esperada:</strong> Cria um novo commit na branch atual, aplicando as mudanças do <code>commit_hash</code>.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="sub-section">
+        <h3>Stash</h3>
+        <p>O <code>git stash</code> é um recurso para salvar temporariamente as alterações não "commitadas" (tanto no Working Directory quanto no Stage), permitindo que você mude de branch ou realize outras tarefas sem perder o seu progresso.</p>
+        <div class="command-block">
+            <div class="command-title">git stash save "descrição"</div>
+            <div class="command-description">
+                <p><strong>Comando:</strong> <code>git stash save "descrição"</code></p>
+                <p><strong>Resposta Esperada:</strong> "Saved working directory and index state...". Suas alterações são salvas em um "stash" e o seu diretório de trabalho fica limpo.</p>
+            </div>
+        </div>
+        <div class="command-block">
+            <div class="command-title">git stash pop</div>
+            <div class="command-description">
+                <p><strong>Comando:</strong> <code>git stash pop</code></p>
+                <p><strong>Resposta Esperada:</strong> "On branch...". As alterações são aplicadas de volta no seu diretório de trabalho e o "stash" é removido.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="sub-section">
+        <h3>Log e Log Formatação</h3>
+        <p>O <code>git log</code> permite formatar e filtrar o histórico de commits do seu repositório.</p>
+        <div class="command-block">
+            <div class="command-title">git log --oneline --stat</div>
+            <div class="command-description">
+                <p><strong>Comando:</strong> <code>git log --oneline --stat</code></p>
+                <p><strong>Resposta Esperada:</strong> Exibe o histórico de commits de forma concisa, mostrando o hash, a mensagem e um resumo das alterações (quais arquivos foram modificados).</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="sub-section">
+        <h3>Bisect</h3>
+        <p>O <code>git bisect</code> é uma ferramenta poderosa para encontrar qual commit introduziu um bug, navegando de forma automática entre commits "bons" e "ruins".</p>
+        <div class="command-block">
+            <div class="command-title">git bisect</div>
+            <div class="command-description">
+                <p><strong>Comandos:</strong></p>
+                <ul>
+                    <li><code>git bisect start</code>: Inicia a busca.</li>
+                    <li><code>git bisect bad</code>: Marca o commit atual como "ruim" (com o bug).</li>
+                    <li><code>git bisect good [commit_hash]</code>: Marca o commit atual (ou um específico) como "bom" (sem o bug).</li>
+                    <li><code>git bisect reset</code>: Finaliza a busca.</li>
+                </ul>
+                <p><strong>Resposta Esperada:</strong> O Git irá navegar para um commit intermediário. Você deverá testar o código e usar <code>git bisect good</code> ou <code>git bisect bad</code> até que o Git reporte qual commit introduziu o bug.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
